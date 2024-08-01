@@ -1,4 +1,4 @@
-const { completeMission } = require('./services/character.service')
+const { completeMission, calculateLevelRequirement } = require('./services/character.service')
 
 const character = {
   health: 100,

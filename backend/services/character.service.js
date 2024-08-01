@@ -22,7 +22,7 @@ const completeMission = (character, mission) => {
 }
 
 const levelUp = (character, newExp) => {
-  const nextLevelRequirement = levelRequiremens[character.level + 1]
+  const nextLevelRequirement = calculateLevelRequirement(character.level + 1)
   const totalExp = (character.exp += newExp)
 
   if (totalExp >= nextLevelRequirement) {
@@ -34,6 +34,12 @@ const levelUp = (character, newExp) => {
   character.exp = totalExp
 }
 
+const calculateLevelRequirement = (level) => {
+  return 250 * (level * level) - 250 * level
+}
+
 module.exports = {
-  completeMission
+  completeMission,
+  levelUp,
+  calculateLevelRequirement
 }

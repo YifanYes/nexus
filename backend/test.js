@@ -22,4 +22,8 @@ const mission = {
 
 completeMission(character, mission)
 
-console.table(character)
+for (let i = 0; i <= 20; i++) {
+  console.log(`level ${i}`, calculateLevelRequirement(i))
+}
+
+// console.table(character)

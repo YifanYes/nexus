@@ -18,3 +18,4 @@ yarn-error.log
 /.fleet
 /.idea
 .php-cs-fixer.cache
+package-lock.json

@@ -136,8 +136,6 @@ const useDnd = ({ schema }: { schema: StructureSchema }) => {
     setStoredData(elements)
   }, [elements, setStoredData])
 
-  console.log(elements)
-
   return {
     sensors,
     activeId,

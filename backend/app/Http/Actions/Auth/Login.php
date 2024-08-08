@@ -21,7 +21,9 @@ class Login extends Action {
 
     $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
     return response()->json([
-      'access_token' => $token,
+      'data' => [
+        'access_token' => $token,
+      ]
     ]);
   }
 }

@@ -29,8 +29,10 @@ class Register extends Action {
     $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
 
     return response()->json([
-      'user' => new UserResource($user),
-      'access_token' => $token,
+      'data' => [
+        'user' => new UserResource($user),
+        'access_token' => $token,
+      ]
     ]);
   }
 }

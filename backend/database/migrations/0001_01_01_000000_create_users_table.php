@@ -22,6 +22,7 @@ return new class () extends Migration {
       $table->unsignedInteger('mana')->default(25);
       $table->unsignedInteger('exp')->default(0);
       $table->unsignedInteger('level')->default(1);
+      $table->unsignedInteger('gold')->default(0);
       $table->unsignedInteger('strength')->default(25);
       $table->unsignedInteger('defense')->default(25);
       $table->unsignedInteger('intelligence')->default(25);

@@ -14,8 +14,10 @@ return new class () extends Migration {
       $table->id();
       $table->uuid('uuid')->index();
       $table->string('title');
+      $table->string('type')->nullable();
       $table->longText('description')->nullable();
       $table->string('status')->default(TaskStatus::TODO->value);
+      $table->string('difficulty');
       $table->datetime('due_date')->nullable();
       $table->foreignId('user_id')->index()->constrained()->nullOnDelete();
       $table->timestamps();

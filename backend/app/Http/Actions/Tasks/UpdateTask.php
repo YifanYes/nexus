@@ -2,6 +2,7 @@
 
 namespace App\Http\Actions\Tasks;
 
+use App\Enums\TaskStatus;
 use App\Http\Actions\Action;
 use App\Http\Requests\Tasks\TaskRequest;
 use App\Http\Resources\TaskResource;
@@ -27,10 +28,16 @@ class UpdateTask extends Action {
 
     $task->update([
       'title' => $data['title'],
+      'type' => $data['type'] ?? null,
       'description' => $data['description'] ?? null,
       'status' => $data['status'],
+      'difficulty' => $data['difficulty'],
       'due_date' => $data['due_date'] ?? null,
     ]);
+
+    if ($task->status === TaskStatus::DONE->value) {
+      $user->earnTaskRewards($task);
+    }
 
     return new TaskResource($task);
   }

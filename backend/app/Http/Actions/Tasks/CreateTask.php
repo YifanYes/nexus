@@ -14,7 +14,10 @@ class CreateTask extends Action {
 
     $task = Task::create([
       'title' => $data['title'],
+      'type' => $data['type'] ?? null,
       'description' => $data['description'] ?? null,
+      'status' => $data['status'],
+      'difficulty' => $data['difficulty'],
       'due_date' => $data['due_date'] ?? null,
       'user_id' => $user->id,
     ]);

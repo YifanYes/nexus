@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Enums\TaskType;
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,6 +26,7 @@ class User extends Authenticatable {
     'mana',
     'exp',
     'level',
+    'gold',
     'strength',
     'defense',
     'intelligence',
@@ -46,5 +48,46 @@ class User extends Authenticatable {
 
   public function tasks(): HasMany {
     return $this->hasMany(Task::class);
+  }
+
+  public function earnTaskRewards(Task $task) {
+    $rewards = $task->getTaskRewards();
+    $this->fill(['gold' => $this->gold + $rewards->gold]);
+    $this->earnExperience($rewards->exp);
+    $this->improveAttributes($task->type);
+    $this->save();
+  }
+
+  public function improveAttributes(string $type): void {
+    if ($type === TaskType::WORKOUT->value) {
+      $this->fill(['strength' => $this->strength + 5]);
+    }
+
+    if ($type === TaskType::STUDY->value) {
+      $this->fill(['intelligence' => $this->intelligence + 5]);
+    }
+
+    if ($type === TaskType::SOCIAL->value) {
+      $this->fill(['charisma' => $this->charisma + 5]);
+    }
+
+    if ($type === TaskType::HEALTH->value) {
+      $this->fill(['health' => $this->health + 5]);
+    }
+  }
+
+  public function earnExperience(int $exp): void {
+    $nextLevelRequiredExp = $this->calculateLevelRequirements($this->level + 1);
+    $currentExp = $this->exp + $exp;
+
+    if ($currentExp >= $nextLevelRequiredExp) {
+      $this->fill(['exp' => $currentExp - $nextLevelRequiredExp, 'level' => $this->level + 1]);
+    }
+
+    $this->fill(['exp' => $currentExp]);
+  }
+
+  public function calculateLevelRequirements(int $level): int {
+    return 250 * ($level * $level) - 250 * $level;
   }
 }

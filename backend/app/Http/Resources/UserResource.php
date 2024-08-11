@@ -17,6 +17,7 @@ class UserResource extends JsonResource {
       'mana' => $this->mana,
       'exp' => $this->exp,
       'level' => $this->level,
+      'gold' => $this->gold,
       'strength' => $this->strength,
       'defense' => $this->defense,
       'intelligence' => $this->intelligence,

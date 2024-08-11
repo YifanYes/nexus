@@ -59,20 +59,18 @@ class User extends Authenticatable {
   }
 
   public function improveAttributes(string $type): void {
-    if ($type === TaskType::WORKOUT->value) {
-      $this->fill(['strength' => $this->strength + 5]);
-    }
+    $attributeMap = [
+      TaskType::WORKOUT->value => 'strength',
+      TaskType::STUDY->value => 'intelligence',
+      TaskType::SOCIAL->value => 'charisma',
+      TaskType::HEALTH->value => 'health',
+    ];
 
-    if ($type === TaskType::STUDY->value) {
-      $this->fill(['intelligence' => $this->intelligence + 5]);
-    }
+    $attribute = $attributeMap[$type] ?? null;
 
-    if ($type === TaskType::SOCIAL->value) {
-      $this->fill(['charisma' => $this->charisma + 5]);
-    }
-
-    if ($type === TaskType::HEALTH->value) {
-      $this->fill(['health' => $this->health + 5]);
+    if (isset($attribute)) {
+      $newValue = min($this->$attribute + 5, 100);
+      $this->fill([$attribute => $newValue]);
     }
   }
 

@@ -69,7 +69,7 @@ class User extends Authenticatable {
     $attribute = $attributeMap[$type] ?? null;
 
     if (isset($attribute)) {
-      $newValue = min($this->$attribute + 5, 100);
+      $newValue = min($this->$attribute + 1, 100);
       $this->fill([$attribute => $newValue]);
     }
   }

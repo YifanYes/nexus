@@ -37,7 +37,7 @@ class DamageUsers extends Command {
 
     $users->each(function ($user) {
       $user->update([
-        'health' => $user->health - ($user->expired_tasks_count * 5)
+        'health' => max(0, $user->health - ($user->expired_tasks_count * 5))
       ]);
     });
   }

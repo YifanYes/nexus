@@ -42,7 +42,7 @@ const Profile = () => {
   }
 
   const nextLevelRequiredExp = (level: number): number => {
-    return 250 * (level * level) - 250 * level
+    return 50 * (level + 1)
   }
 
   const completeTask = () => {

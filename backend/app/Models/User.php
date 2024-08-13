@@ -86,6 +86,6 @@ class User extends Authenticatable {
   }
 
   public function calculateLevelRequirements(int $level): int {
-    return 250 * ($level * $level) - 250 * $level;
+    return 50 * ($level + 1);
   }
 }

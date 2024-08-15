@@ -1,6 +1,6 @@
 'use client'
 
-import { dndFamily } from '@/state/components'
+import { dndFamily } from '@/state/atoms'
 import { SortableContext } from '@dnd-kit/sortable'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'

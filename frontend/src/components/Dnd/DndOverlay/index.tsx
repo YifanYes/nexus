@@ -1,6 +1,6 @@
 'use client'
 
-import { dndFamily } from '@/state/components'
+import { dndFamily } from '@/state/atoms'
 import { DragOverlay, UniqueIdentifier } from '@dnd-kit/core'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'

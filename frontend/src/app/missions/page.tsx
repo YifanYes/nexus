@@ -5,7 +5,7 @@ import { StructureSchema } from '@/components/Dnd/DndArea'
 import Mission from '@/components/Mission'
 import MissionCategory from '@/components/MissionCategory'
 import NewDndParentButton from '@/components/NewDndParentButton'
-import { dndFamily } from '@/state/components'
+import { dndFamily } from '@/state/atoms'
 import { useAtom } from 'jotai'
 
 const Home = () => {

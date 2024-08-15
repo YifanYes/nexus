@@ -1,7 +1,7 @@
 'use client'
 
 import { StructureSchema } from '@/components/Dnd/DndArea'
-import { dndFamily } from '@/state/components'
+import { dndFamily } from '@/state/atoms'
 import {
   DragOverEvent,
   DragStartEvent,

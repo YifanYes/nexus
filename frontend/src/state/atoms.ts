@@ -1,3 +1,4 @@
+import { User } from '@/models'
 import { atom } from 'jotai'
 import { atomFamily } from 'jotai/utils'
 
@@ -12,3 +13,5 @@ export const dndFamily = atomFamily((id: string) =>
     }
   )
 )
+
+export const authAtom = atom<User | undefined>()

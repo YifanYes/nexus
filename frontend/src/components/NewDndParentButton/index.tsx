@@ -3,7 +3,7 @@
 import { Button } from '@/components/Button'
 import Input from '@/components/Input'
 import Modal from '@/components/Modal'
-import { dndFamily } from '@/state/components'
+import { dndFamily } from '@/state/atoms'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'

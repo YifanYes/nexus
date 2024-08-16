@@ -1,13 +1,16 @@
 'use client'
 
 import { AuthContext } from '@/context/AuthContext'
+import { useTranslations } from 'next-intl'
 import { useContext } from 'react'
 
 export default function Home() {
   const { logout } = useContext(AuthContext)
+  const t = useTranslations()
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+      <p>{t('home')}</p>
       <button
         type='submit'
         onClick={logout}

@@ -1,12 +1,12 @@
 'use client'
 
 import { AuthContext } from '@/context/AuthContext'
-import { useTranslations } from 'next-intl'
+import { LanguageContext } from '@/context/LanguageContext'
 import { useContext } from 'react'
 
 export default function Home() {
   const { logout } = useContext(AuthContext)
-  const t = useTranslations()
+  const { t } = useContext(LanguageContext)
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>

@@ -51,7 +51,7 @@ const questions = [
 ]
 
 const Onboarding = () => {
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState<{ [key: string]: string }>({})
 
   const handleChange = (index: number, value: string) => {
     setAnswers({
@@ -63,11 +63,11 @@ const Onboarding = () => {
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
-    const answerValues = Object.values(answers)
+    const answerValues: string[] = Object.values(answers)
 
     // Count ocurrences of each value
-    const countMap = {}
-    answerValues.forEach((answer) => {
+    const countMap: { [key: string]: number } = {}
+    answerValues.forEach((answer: string) => {
       countMap[answer] = (countMap[answer] || 0) + 1
     })
 

@@ -2,6 +2,7 @@
 
 use App\Http\Actions\Auth\{Login, Logout, Register};
 use App\Http\Actions\Tasks\{CreateTask, DeleteTask, GetTasks, UpdateTask};
+use App\Http\Actions\Users\UpdateUser;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,8 @@ Route::prefix('tasks')->middleware('auth:sanctum')->group(function () {
   Route::post('/', CreateTask::class);
   Route::put('/{task_id}', UpdateTask::class);
   Route::delete('/{task_id}', DeleteTask::class);
+});
+
+Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
+  Route::put('/', UpdateUser::class);
 });

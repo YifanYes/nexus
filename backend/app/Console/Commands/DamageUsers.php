@@ -30,7 +30,7 @@ class DamageUsers extends Command {
         ->where('due_date', '<', now());
     })->withCount([
       'tasks as expired_tasks_count' => function ($q) {
-        $q->where('status', 'TO DO')
+        $q->where('status', TaskStatus::TODO->value)
           ->where('due_date', '<', now());
       }
     ])->get();

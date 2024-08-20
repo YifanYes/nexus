@@ -2,7 +2,8 @@
 
 import { Cookie } from '@/services'
 import Config from '@/services/Config.service'
-import { createContext, ReactNode, useEffect } from 'react'
+import { Locales } from '@/types/locales'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 import enTranslations from '../../public/locales/en.json'
 import esTranslations from '../../public/locales/es.json'
 
@@ -24,15 +25,16 @@ export const LanguageContext = createContext<LanguageContextProps>({
 })
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const changeLocale = (newLocale: string) => Cookie.set(Config.locale, newLocale)
+  const [locale, setLocale] = useState<string>(Locales.en)
 
-  const t = (key: string) => translationsMap[Cookie.get(Config.locale) || 'en']?.[key] || key
+  const t = (key: string) => translationsMap[locale]?.[key] || key
+  const changeLocale = (newLocale: string) => {
+    setLocale(newLocale)
+    Cookie.set(Config.locale, newLocale)
+  }
 
   useEffect(() => {
-    if (Cookie.get(Config.locale)) {
-      return
-    }
-    changeLocale(navigator.language.split('-')[0])
+    setLocale(Cookie.get(Config.locale) || Locales.en)
   }, [])
 
   return <LanguageContext.Provider value={{ changeLocale, t }}>{children}</LanguageContext.Provider>

@@ -1,8 +1,7 @@
-import AuthProvider from '@/context/AuthContext'
-import { LanguageProvider } from '@/context/LanguageContext'
 import '@/styles/globals.css'
 import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Providers } from './provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,18 +10,16 @@ export const metadata: Metadata = {
   description: 'The gamified productivity app'
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <html>
-      <LanguageProvider>
-        <AuthProvider>
-          <body className={inter.className}>{children}</body>
-        </AuthProvider>
-      </LanguageProvider>
+      <Providers>
+        <body className={inter.className}>{children}</body>
+      </Providers>
     </html>
   )
 }

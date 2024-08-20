@@ -14,10 +14,10 @@ export default function Home() {
       <p>{t('home')}</p>
       <button
         type='submit'
-        onClick={() => changeLocale(Locales.es)}
+        onClick={() => changeLocale(Locales.en)}
         className='mt-8 flex w-full justify-center rounded-md bg-[#5bc592] text-[#f7f8fa] px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-[#7bdcad] hover:text-white transition-colors duration-200 ease-in-out'
       >
-        Logout
+        Change locale
       </button>
       <button
         type='submit'

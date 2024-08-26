@@ -1,5 +1,7 @@
 'use client'
 
+import { Api, Notification } from '@/services'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 const questions = [
@@ -52,12 +54,21 @@ const questions = [
 
 const Onboarding = () => {
   const [answers, setAnswers] = useState<{ [key: string]: string }>({})
+  const router = useRouter()
 
   const handleChange = (index: number, value: string) => {
     setAnswers({
       ...answers,
       [index]: value
     })
+  }
+
+  const updateUser = async (userClass: string) => {
+    try {
+      await Api.put('/user', { class: userClass })
+    } catch (error) {
+      Notification.error('An error occurred while login, please try again later')
+    }
   }
 
   const onSubmit = (event: React.FormEvent) => {
@@ -81,7 +92,9 @@ const Onboarding = () => {
       }
     }
 
-    console.log({ class: mostRepeated, countMap })
+    mostRepeated && updateUser(mostRepeated)
+
+    router.push('/dashboard')
   }
 
   return (
